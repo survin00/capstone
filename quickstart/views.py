@@ -1,5 +1,6 @@
 
 from rest_framework import viewsets
+from django_filters.rest_framework import DjangoFilterBackend
 from .models import Location
 from .models import User
 from .models import Discount
@@ -33,6 +34,8 @@ class FurnitureViewSet(viewsets.ModelViewSet):
 class TicketViewSet(viewsets.ModelViewSet):
     queryset = Ticket.objects.all()
     serializer_class = TicketSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['ticketid','furnitureid','issuestatus','locationid']
 
 
 class TicketImageViewSet(viewsets.ModelViewSet):
