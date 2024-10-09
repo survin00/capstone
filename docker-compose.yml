@@ -1,0 +1,8 @@
+version: '3.9'
+
+services:
+  web:
+    image: furni-django:0.0.5
+    build: .
+    ports: 
+    - "8000:8000"
