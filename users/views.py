@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from users.serializers import UserRegistrationSerializer, UserLoginSerializer
 from rest_framework.views import APIView
+from rest_framework import viewsets
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
@@ -63,6 +64,7 @@ class UserLoginAPIView(APIView):
 			response = Response()
 			response.set_cookie(key='access_token', value=user_access_token, httponly=True)
 			response.data = {
+				'email': email,
 				'access_token': user_access_token
 			}
 			return response
@@ -110,3 +112,4 @@ class UserLogoutViewAPI(APIView):
 			'message': 'User is already logged out.'
 		}
 		return response
+	

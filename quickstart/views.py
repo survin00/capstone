@@ -8,6 +8,7 @@ from .models import Furniture
 from .models import Ticket
 from .models import Ticketimage
 
+
 from .serializers import LocationSerializer
 from .serializers import UserSerializer
 from .serializers import DiscountSerializer
@@ -36,10 +37,14 @@ class TicketViewSet(viewsets.ModelViewSet):
     serializer_class = TicketSerializer
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['ticketid','furnitureid','issuestatus','locationid']
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        queryset = queryset.exclude(issuestatus='DRAFT')
+        
+        return queryset
 
 
 class TicketImageViewSet(viewsets.ModelViewSet):
     queryset = Ticketimage.objects.all()
     serializer_class = TicketImageSerializer
-
 

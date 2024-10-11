@@ -7,6 +7,7 @@ from .models import Ticket
 from .models import Ticketimage
 
 
+
 class LocationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Location
@@ -40,3 +41,5 @@ class TicketImageSerializer(serializers.ModelSerializer):
     class Meta:
         model = Ticketimage
         fields = '__all__'
+
+
