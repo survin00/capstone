@@ -42,6 +42,12 @@ class TicketViewSet(viewsets.ModelViewSet):
         queryset = queryset.exclude(issuestatus='DRAFT')
         
         return queryset
+    
+class TicketUpdateViewSet(viewsets.ModelViewSet):
+    queryset = Ticket.objects.all()
+    serializer_class = TicketSerializer
+    filter_backends = [DjangoFilterBackend]
+
 
 
 class TicketImageViewSet(viewsets.ModelViewSet):
